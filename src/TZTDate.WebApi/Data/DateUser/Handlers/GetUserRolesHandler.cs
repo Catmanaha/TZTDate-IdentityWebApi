@@ -1,7 +1,5 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using TZTDate.Core.Data.DateUser;
-using TZTDate.Core.Exceptions;
 
 public class GetUserRolesHandler : IRequestHandler<GetUserRolesCommand, IEnumerable<Role>>
 {
@@ -9,7 +7,6 @@ public class GetUserRolesHandler : IRequestHandler<GetUserRolesCommand, IEnumera
     public GetUserRolesHandler(TZTDateDbContext context)
     {
         this.context = context;
-
     }
 
     public async Task<IEnumerable<Role>> Handle(GetUserRolesCommand request, CancellationToken cancellationToken)

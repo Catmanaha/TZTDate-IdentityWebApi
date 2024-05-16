@@ -1,7 +1,5 @@
 using MediatR;
 using Microsoft.Extensions.Options;
-using TZTDate.Core.Data.DateToken.Models;
-using TZTDate.Core.Data.Options;
 
 public class CreateRefreshTokenHandler : IRequestHandler<CreateRefreshTokenCommand, RefreshToken>
 {

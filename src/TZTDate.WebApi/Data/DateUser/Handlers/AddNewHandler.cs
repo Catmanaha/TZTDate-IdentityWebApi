@@ -1,8 +1,6 @@
 ﻿using MediatR;
-using TZTDate.Core.Data.DateUser;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using TZTDate.Core.Data.DateUser.Enums;
 
 public class AddNewHandler : IRequestHandler<AddNewCommand>
 {

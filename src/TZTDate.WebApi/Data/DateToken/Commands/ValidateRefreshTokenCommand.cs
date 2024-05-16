@@ -1,5 +1,4 @@
 using MediatR;
-using TZTDate.Core.Data.DateToken.Responses;
 
 public class ValidateRefreshTokenCommand : IRequest<RefreshTokenValidationResponse>
 {

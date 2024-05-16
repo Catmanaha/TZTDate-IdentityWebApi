@@ -1,5 +1,4 @@
 using MediatR;
-using TZTDate.Core.Data.DateUser;
 
 public class FindByIdCommand : IRequest<User>
 {

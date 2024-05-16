@@ -1,6 +1,5 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using TZTDate.Core.Data.DateUser;
 
 public class FindByIdHandler : IRequestHandler<FindByIdCommand, User>
 {

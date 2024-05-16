@@ -1,6 +1,5 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using TZTDate.Core.Data.DateToken.Models;
 
 public class GetRefreshTokenHandler : IRequestHandler<GetRefreshTokenCommand, RefreshToken>
 {

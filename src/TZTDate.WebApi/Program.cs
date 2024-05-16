@@ -3,8 +3,6 @@ using TZTDate.WebApi.Middlewares;
 using TZTDate.WebApi.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TZTDate.Core.Data.DateUser;
-using TZTDate.Core.Data.DateUser.Enums;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);

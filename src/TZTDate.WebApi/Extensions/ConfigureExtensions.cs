@@ -1,5 +1,3 @@
-using TZTDate.Core.Data.Options;
-
 public static class ConfigureExtensions
 {
     public static void Configure(this IServiceCollection serviceCollection, IConfiguration configuration)

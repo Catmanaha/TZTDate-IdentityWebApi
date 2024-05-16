@@ -1,7 +1,5 @@
 using System.Security.Claims;
 using MediatR;
-using TZTDate.Core.Data.DateUser.Responses;
-using TZTDate.Core.Exceptions;
 
 public class LoginHandler : IRequestHandler<LoginCommand, LoginResponse>
 {

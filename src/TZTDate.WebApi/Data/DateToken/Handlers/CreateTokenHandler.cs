@@ -2,7 +2,6 @@ using System.IdentityModel.Tokens.Jwt;
 using MediatR;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using TZTDate.Core.Data.Options;
 
 public class CreateTokenHandler : IRequestHandler<CreateTokenCommand, string>
 {

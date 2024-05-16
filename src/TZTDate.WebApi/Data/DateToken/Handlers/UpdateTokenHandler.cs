@@ -1,6 +1,5 @@
 using System.Security.Claims;
 using MediatR;
-using TZTDate.Core.Data.DateToken.Responses;
 
 public class UpdateTokenHandler : IRequestHandler<UpdateTokenCommand, UpdateTokenResponse>
 {
