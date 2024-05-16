@@ -1,9 +1,7 @@
 using System.Reflection;
-using TZTDate.Infrastructure.Extensions;
 using TZTDate.WebApi.Middlewares;
 using TZTDate.WebApi.Filters;
 using Microsoft.AspNetCore.Mvc;
-using TZTDate.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using TZTDate.Core.Data.DateUser;
 using TZTDate.Core.Data.DateUser.Enums;
@@ -26,7 +24,7 @@ builder.Services.InitSwagger();
 builder.Services.InitAuthentication(builder.Configuration);
 builder.Services.Configure(builder.Configuration);
 builder.Services.InitDbContext(builder.Configuration, Assembly.GetExecutingAssembly());
-builder.Services.AddMediatR(configurations => configurations.RegisterServicesFromAssembly(AppDomain.CurrentDomain.Load("TZTDate.Infrastructure")));
+builder.Services.AddMediatR(configurations => configurations.RegisterServicesFromAssembly(AppDomain.CurrentDomain.Load("TZTDate.WebApi")));
 
 builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 builder.Services.AddScoped<ValidationFilterAttribute>();

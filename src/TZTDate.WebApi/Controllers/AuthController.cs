@@ -1,9 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TZTBank.Core.Data.DateUser.Dtos;
-using TZTBank.Infrastructure.Data.DateUser.Commands;
 using TZTDate.Core.Data.DateUser.Dtos;
-using TZTDate.Infrastructure.Data.DateToken.Commands;
 using TZTDate.WebApi.Filters;
 
 namespace TZTDate.WebApi.Controllers;
