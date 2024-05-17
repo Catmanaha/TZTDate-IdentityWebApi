@@ -64,7 +64,7 @@ public class AddNewHandler : IRequestHandler<AddNewCommand>
                 {
                     if (property2.Name == property.Name + "Name")
                     {
-                        filename = property2.GetValue(request.UserRegisterDto).ToString();
+                        filename = property2.GetValue(request.UserRegisterDto).ToString() + request.UserRegisterDto.Email + Guid.NewGuid().ToString() + ".jpg";
                         break;
                     }
                 }

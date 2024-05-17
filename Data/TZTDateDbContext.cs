@@ -28,5 +28,13 @@ public class TZTDateDbContext : DbContext
             .HasOne(ur => ur.Role)
             .WithMany(r => r.UserRoles)
             .HasForeignKey(ur => ur.RoleId);
+
+        builder.Entity<User>()
+        .Property(e => e.ProfilePicPaths)
+        .HasConversion(
+            v => string.Join(',', v),
+            v => v.Split(',', StringSplitOptions.RemoveEmptyEntries
+        )
+    );
     }
 }
