@@ -11,6 +11,8 @@ public class TZTDateDbContext : DbContext
     public DbSet<UserRole> UserRoles { get; set; }
     public DbSet<Role> Roles { get; set; }
     public DbSet<Address> Addresses { get; set; }
+    public DbSet<Message> Message { get; set; }
+    public DbSet<PrivateChat> PrivateChats { get; set; }
     public TZTDateDbContext(DbContextOptions<TZTDateDbContext> options) : base(options) { }
     protected override void OnModelCreating(ModelBuilder builder)
     {

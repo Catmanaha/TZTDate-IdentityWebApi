@@ -12,8 +12,8 @@ using TZTDate_IdentityWebApi.Data;
 namespace TZTDate_IdentityWebApi.Migrations
 {
     [DbContext(typeof(TZTDateDbContext))]
-    [Migration("20240517014249_Fix pictures")]
-    partial class Fixpictures
+    [Migration("20240517125829_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,6 +72,49 @@ namespace TZTDate_IdentityWebApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LogEntries");
+                });
+
+            modelBuilder.Entity("TZTDate_IdentityWebApi.Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Owner")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("PrivateChatId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PrivateChatId");
+
+                    b.ToTable("Message");
+                });
+
+            modelBuilder.Entity("TZTDate_IdentityWebApi.Models.PrivateChat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("PrivateChatHashName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PrivateChats");
                 });
 
             modelBuilder.Entity("TZTDate_IdentityWebApi.Models.RefreshToken", b =>
@@ -214,6 +257,15 @@ namespace TZTDate_IdentityWebApi.Migrations
                     b.ToTable("UserUser");
                 });
 
+            modelBuilder.Entity("TZTDate_IdentityWebApi.Models.Message", b =>
+                {
+                    b.HasOne("TZTDate_IdentityWebApi.Models.PrivateChat", null)
+                        .WithMany("Messages")
+                        .HasForeignKey("PrivateChatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("TZTDate_IdentityWebApi.Models.User", b =>
                 {
                     b.HasOne("TZTDate_IdentityWebApi.Models.Address", "Address")
@@ -255,6 +307,11 @@ namespace TZTDate_IdentityWebApi.Migrations
                         .HasForeignKey("FollowersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TZTDate_IdentityWebApi.Models.PrivateChat", b =>
+                {
+                    b.Navigation("Messages");
                 });
 
             modelBuilder.Entity("TZTDate_IdentityWebApi.Models.Role", b =>

@@ -44,6 +44,19 @@ namespace TZTDate_IdentityWebApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PrivateChats",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PrivateChatHashName = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PrivateChats", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RefreshTokens",
                 columns: table => new
                 {
@@ -89,7 +102,7 @@ namespace TZTDate_IdentityWebApi.Migrations
                     Gender = table.Column<int>(type: "integer", nullable: false),
                     AddressId = table.Column<int>(type: "integer", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    ProfilePicPaths = table.Column<string[]>(type: "text[]", nullable: true),
+                    ProfilePicPaths = table.Column<string>(type: "text", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     SearchingGender = table.Column<int>(type: "integer", nullable: true),
                     SearchingAgeStart = table.Column<int>(type: "integer", nullable: false),
@@ -103,6 +116,27 @@ namespace TZTDate_IdentityWebApi.Migrations
                         column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Message",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Content = table.Column<string>(type: "text", nullable: false),
+                    Owner = table.Column<string>(type: "text", nullable: false),
+                    PrivateChatId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Message", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Message_PrivateChats_PrivateChatId",
+                        column: x => x.PrivateChatId,
+                        principalTable: "PrivateChats",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -154,6 +188,11 @@ namespace TZTDate_IdentityWebApi.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Message_PrivateChatId",
+                table: "Message",
+                column: "PrivateChatId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserRoles_RoleId",
                 table: "UserRoles",
                 column: "RoleId");
@@ -176,6 +215,9 @@ namespace TZTDate_IdentityWebApi.Migrations
                 name: "LogEntries");
 
             migrationBuilder.DropTable(
+                name: "Message");
+
+            migrationBuilder.DropTable(
                 name: "RefreshTokens");
 
             migrationBuilder.DropTable(
@@ -183,6 +225,9 @@ namespace TZTDate_IdentityWebApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserUser");
+
+            migrationBuilder.DropTable(
+                name: "PrivateChats");
 
             migrationBuilder.DropTable(
                 name: "Roles");
